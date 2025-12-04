@@ -15,6 +15,10 @@ for (int i = 0; i < lines.Count; i++)
 {
     for (int j = 0; j < lines.First().Length; j++)
     {
+        if (lines[x][y] != '@')
+        {
+            continue;
+        }
         if (RollIsFreeEnough(i, j))
         {
             count++;
@@ -24,11 +28,6 @@ for (int i = 0; i < lines.Count; i++)
 
 bool RollIsFreeEnough(int x, int y)
 {
-    if (lines[x][y] != '@')
-    {
-        return false;
-    }
-
     int rollsAsNeighbours = 0;
     foreach(char? neighbour in Neighbours(x, y))
     {
@@ -37,7 +36,6 @@ bool RollIsFreeEnough(int x, int y)
             rollsAsNeighbours++;
         }
     }
-    
     return rollsAsNeighbours < 4;
 }
 
